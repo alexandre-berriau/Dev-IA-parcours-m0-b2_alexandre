@@ -1,0 +1,37 @@
+services:
+  api:
+    build: ./api
+    env_file: .env
+    environment:
+      # Le cache Hugging Face pointe vers le volume ./models : le modèle n'est téléchargé qu'une fois
+      HF_HOME: /models
+    volumes:
+      - ./models:/models
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    networks:
+      - fastia
+    healthcheck:
+      # Pas de curl dans l'image slim : on interroge /health avec Python
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      # Marge pour le 1er lancement (téléchargement du modèle)
+      start_period: 180s
+
+  ui:
+    build: ./ui
+    env_file: .env
+    ports:
+      - "8501:8501"
+    networks:
+      - fastia
+    depends_on:
+      api:
+        # L'interface ne démarre que lorsque l'API répond
+        condition: service_healthy
+
+networks:
+  fastia:

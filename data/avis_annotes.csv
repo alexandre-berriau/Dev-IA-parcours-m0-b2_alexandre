@@ -1,0 +1,31 @@
+id,hotel,source,texte,sentiment_attendu
+1,Resort Hotel,Booking,"Séjour parfait ! Piscine magnifique, personnel aux petits soins et petit-déjeuner copieux. On reviendra l'été prochain avec les enfants.",positif
+2,City Hotel,Google,"Chambre sale à notre arrivée, cheveux dans la douche et serviettes tachées. Inadmissible pour ce prix.",négatif
+3,City Hotel,TripAdvisor,"Bravo pour l'insonorisation : j'ai pu suivre en direct toute la soirée de mes voisins jusqu'à 3h du matin. Merci pour l'expérience.",négatif
+4,Resort Hotel,Questionnaire,"Rien à redire, je ne m'attendais pas à un accueil aussi chaleureux.",positif
+5,City Hotel,Booking,"Hôtel correct pour une nuit d'étape. Chambre petite mais propre, rien d'exceptionnel.",neutre
+6,Resort Hotel,Google,"Le spa n'est pas du tout à la hauteur de ce qui est annoncé sur le site. Pas de hammam, et le jacuzzi était en panne.",négatif
+7,City Hotel,Questionnaire,"Très bien situé, à deux pas de la gare. Personnel réactif, literie confortable.",positif
+8,Resort Hotel,TripAdvisor,"Nous venons depuis cinq ans et c'est clairement la moins bonne année : moins de personnel, buffet réduit, animations supprimées.",négatif
+9,City Hotel,Booking,"Chambre spacieuse et lumineuse, mais le wifi était très lent. Bon rapport qualité-prix malgré tout.",neutre
+10,Resort Hotel,Google,"Réservation au nom de M. et Mme Lefèvre, chambre 214 : la climatisation fuyait sur le lit et personne n'est venu malgré trois appels. Contactez-moi : j.lefevre@exemple.fr",négatif
+11,City Hotel,TripAdvisor,"Excellent ! Le barman nous a fait découvrir des cocktails incroyables. Mention spéciale à Sofia à la réception.",positif
+12,Resort Hotel,Questionnaire,"Overbooké à notre arrivée, on nous a relogés dans un autre hôtel à 20 minutes. Aucun geste commercial.",négatif
+13,City Hotel,Booking,"Séjour professionnel de deux nuits. Le service a fait le travail, sans plus.",neutre
+14,Resort Hotel,Google,"Vue mer depuis la chambre 😍 coucher de soleil inoubliable, on recommande !",positif
+15,City Hotel,Google,"Petit-déjeuner à 18 € pour du pain industriel et un café tiède. À éviter.",négatif
+16,Resort Hotel,TripAdvisor,"Le cadre est superbe et les chambres agréables, en revanche le restaurant est cher et le service lent. À vous de voir.",neutre
+17,City Hotel,Questionnaire,"Pas une seule fausse note, on ne pouvait pas rêver mieux.",positif
+18,Resort Hotel,Booking,"Super, la « vue mer » donnait sur le parking. Heureusement qu'il y avait la photo du site pour imaginer.",négatif
+19,City Hotel,Google,"Hôtel classique de centre-ville. Le parking est payant, pensez à réserver.",neutre
+20,Resort Hotel,Google,"Club enfants génial, nos deux garçons ne voulaient plus partir ! Équipe d'animation au top.",positif
+21,City Hotel,TripAdvisor,"Ancien habitué, je suis déçu : depuis la rénovation l'hôtel a perdu son âme et les prix ont doublé.",négatif
+22,Resort Hotel,Questionnaire,"RAS.",neutre
+23,City Hotel,Booking,"Très bon séjour dans l'ensemble. Seul petit bémol : l'ascenseur un peu lent. Je reviendrai sans hésiter.",positif
+24,Resort Hotel,Google,"Punaises de lit dans la chambre 108. Nous avons dû partir en pleine nuit. Je ne comprends pas qu'on puisse laisser passer ça.",négatif
+25,City Hotel,Google,"Great stay! Personnel adorable et chambre très calme.",positif
+26,Resort Hotel,TripAdvisor,"Je ne dirais pas que c'était horrible, mais je ne reviendrai pas.",négatif
+27,City Hotel,Questionnaire,"Arrivée tardive vers 23h, check-in rapide. Départ tôt le lendemain, je n'ai pas testé les services.",neutre
+28,Resort Hotel,Booking,"Un vrai havre de paix. Le massage au spa était divin.",positif
+29,City Hotel,Booking,"Late check-out facturé 40 € alors qu'il avait été confirmé gratuit par mail. Très mauvaise gestion.",négatif
+30,Resort Hotel,Google,"Bien pour les familles, un peu bruyant pour les couples qui cherchent le calme.",neutre

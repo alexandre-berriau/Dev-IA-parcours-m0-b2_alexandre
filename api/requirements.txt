@@ -1,0 +1,17 @@
+# PyTorch (version CPU) est installé à part dans le Dockerfile pour garder une image légère.
+# Hors Docker : pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+
+# API
+fastapi==0.115.12
+uvicorn==0.34.0
+pydantic==2.11.5
+loguru==0.7.3
+
+# Modèle
+transformers==4.46.3
+sentencepiece==0.2.0
+protobuf==5.29.3
+
+# Tests
+pytest==8.3.5
+httpx==0.28.1
