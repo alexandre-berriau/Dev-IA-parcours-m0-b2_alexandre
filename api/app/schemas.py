@@ -29,3 +29,19 @@ class SentimentOut(BaseModel):
     # Scores bruts du modèle, pour la traçabilité : {"1 star": 0.02, ..., "5 stars": 0.71}
     scores_etoiles: dict[str, float]
     latence_ms: float
+
+
+class LogEntry(BaseModel):
+    """Une prédiction journalisée, telle que la renvoie /logs."""
+
+    horodatage: str
+    # Pas d'extrait de l'avis : il reste dans logs/api.log, côté serveur
+    sentiment: Literal["négatif", "neutre", "positif"]
+    latence_ms: float
+
+
+class LogsOut(BaseModel):
+    """Réponse de /logs, les prédictions les plus récentes d'abord."""
+
+    total: int
+    entrees: list[LogEntry]

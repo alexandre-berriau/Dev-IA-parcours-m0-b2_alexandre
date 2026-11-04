@@ -3,11 +3,12 @@
 import os
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from loguru import logger
 
+from app import journal
 from app.inference import load_pipeline, predict_sentiment
-from app.schemas import ReviewIn, SentimentOut
+from app.schemas import LogsOut, ReviewIn, SentimentOut
 
 MODEL_NAME = os.getenv("MODEL_NAME", "cmarkea/distilcamembert-base-sentiment")
 
@@ -17,6 +18,7 @@ state: dict = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    journal.configurer()
     # Au 1er lancement, le modèle est téléchargé (≈ 270 Mo) : ça peut prendre quelques minutes
     logger.info("Chargement du modèle {}…", MODEL_NAME)
     state["classifier"] = load_pipeline(MODEL_NAME)
@@ -55,4 +57,13 @@ def predict(review: ReviewIn) -> SentimentOut:
     classifier = state.get("classifier")
     if classifier is None:
         raise HTTPException(status_code=503, detail="Modèle non chargé")
-    return SentimentOut(**predict_sentiment(classifier, review.text))
+    resultat = predict_sentiment(classifier, review.text)
+    journal.tracer(review.text, resultat["sentiment"], resultat["latence_ms"])
+    return SentimentOut(**resultat)
+
+
+@app.get("/logs", response_model=LogsOut)
+def logs(limite: int = Query(20, ge=1, le=journal.TAMPON_MAX)) -> LogsOut:
+    """Les dernières prédictions, pour affichage dans l'interface qualité."""
+    entrees = journal.dernieres(limite)
+    return LogsOut(total=len(entrees), entrees=entrees)
