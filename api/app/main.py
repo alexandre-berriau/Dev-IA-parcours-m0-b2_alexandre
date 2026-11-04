@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from loguru import logger
 
-from app.inference import load_pipeline, predict_sentiment  # noqa: F401 (utilisée en tâche 3)
+from app.inference import load_pipeline, predict_sentiment
 from app.schemas import ReviewIn, SentimentOut
 
 MODEL_NAME = os.getenv("MODEL_NAME", "cmarkea/distilcamembert-base-sentiment")
@@ -51,7 +51,8 @@ def info() -> dict:
 
 @app.post("/predict", response_model=SentimentOut)
 def predict(review: ReviewIn) -> SentimentOut:
-    """Analyse le sentiment d'un avis.
-
-    """
-    raise HTTPException(status_code=501, detail="Route /predict pas encore implémentée")
+    """Analyse le sentiment d'un avis client."""
+    classifier = state.get("classifier")
+    if classifier is None:
+        raise HTTPException(status_code=503, detail="Modèle non chargé")
+    return SentimentOut(**predict_sentiment(classifier, review.text))
