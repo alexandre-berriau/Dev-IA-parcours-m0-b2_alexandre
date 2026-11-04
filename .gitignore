@@ -1,0 +1,23 @@
+# Configuration locale : jamais versionnée, voir .env.example pour les clés attendues
+.env
+
+# Cache du modèle Hugging Face, monté en volume : 261 Mo qui se retéléchargent seuls
+models/
+
+# Logs de l'API, montés en volume et créés au lancement
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Système
+.DS_Store
+Thumbs.db
