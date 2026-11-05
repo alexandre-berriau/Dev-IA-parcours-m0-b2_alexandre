@@ -64,3 +64,14 @@ def tracer(text: str, sentiment: str, latence_ms: float) -> None:
 def dernieres(limite: int) -> list[dict]:
     """Les prédictions les plus récentes d'abord."""
     return list(_recentes)[:limite]
+
+
+def tracer_lot(total: int, duree_ms: float, repartition: dict[str, int]) -> None:
+    """Une seule ligne par lot : 200 avis n'ont pas à chasser /logs de son tampon."""
+    # Pas de bind(prediction=...) : volontaire, le lot va dans le fichier et nulle part ailleurs
+    logger.info(
+        "batch | {total} avis | {detail} | {duree} ms",
+        total=total,
+        detail=" / ".join(f"{n} {classe}" for classe, n in repartition.items()),
+        duree=round(duree_ms),
+    )
