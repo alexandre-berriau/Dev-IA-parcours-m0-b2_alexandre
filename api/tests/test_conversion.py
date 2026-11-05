@@ -31,6 +31,25 @@ def test_les_seuils_penchent_vers_le_negatif():
     assert SEUIL_POSITIF > 3.5
 
 
+@pytest.mark.parametrize(
+    "note, attendu",
+    [
+        (1.5, "neutre"),
+        (3.0, "neutre"),
+        (4.9, "neutre"),
+    ],
+)
+def test_des_seuils_ecartes_rendent_tout_neutre(note, attendu):
+    """Les seuils sont des arguments : l'interface qualité les déplace sans redéployer."""
+    assert convertir_note(note, seuil_negatif=1.01, seuil_positif=4.99) == attendu
+
+
+def test_des_seuils_resserres_suppriment_le_neutre():
+    # Seuils confondus : la classe neutre devient inatteignable, l'API refuse ce cas en 422
+    assert convertir_note(2.99, seuil_negatif=3.0, seuil_positif=3.0) == "négatif"
+    assert convertir_note(3.0, seuil_negatif=3.0, seuil_positif=3.0) == "positif"
+
+
 def test_note_attendue_sur_une_certitude():
     scores = dict.fromkeys(ETOILES, 0.0) | {"5 stars": 1.0}
     assert note_attendue(scores) == pytest.approx(5.0)
